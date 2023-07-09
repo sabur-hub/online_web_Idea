@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Онлайн редактор HTML, CSS и JavaScript</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+
+        #editor {
+            flex: 1;
+            padding: 20px;
+            background-color: #333;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #output {
+            flex: 1;
+            padding: 20px;
+            background-color: #222;
+            overflow: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        #runButtonContainer {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #runButton {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        #runButton:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            display: inline;
+            margin: 0;
+        }
+
+        /* Адаптивные стили для планшетов */
+        @media screen and (max-width: 768px) {
+            #container {
+                flex-direction: column; /* Изменяем на вертикальное расположение на планшетах */
+            }
+            #editor, #output {
+                padding: 10px; /* Уменьшаем внутренний отступ на планшетах */
+            }
+        }
+
+        /* Адаптивные стили для мобильных устройств */
+        @media screen and (max-width: 480px) {
+            #editor, #output {
+                padding: 5px; /* Уменьшаем внутренний отступ на мобильных устройствах */
+            }
+            #runButtonContainer {
+                flex-direction: column; /* Изменяем на вертикальное расположение на мобильных устройствах */
+                margin-top: 5px; /* Уменьшаем отступ сверху на мобильных устройствах */
+            }
+            #runButton {
+                margin-left: 0; /* Удаляем отступ слева для кнопки на мобильных устройствах */
+                margin-top: 5px; /* Добавляем отступ сверху для кнопки на мобильных устройствах */
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="editor">
+        <div id="runButtonContainer">
+            <h2 style="display: inline;">Ваш код:</h2>
+            <button id="runButton">Выполнить</button>
+        </div>
+        <textarea id="codeInput"></textarea>
+    </div>
+    <div id="output">
+        <h2 style="display: inline;">Результат:</h2>
+        <div id="outputContent"></div>
+    </div>
+</div>
+
+<script>
+    var codeInput = document.getElementById("codeInput");
+    var outputContent = document.getElementById("outputContent");
+    var runButton = document.getElementById("runButton");
+
+    function runCode() {
+        var code = codeInput.value;
+        outputContent.innerHTML = code;
+        eval(code);
+    }
+
+    runButton.addEventListener("click", runCode);
+</script>
+</body>
+</html>
